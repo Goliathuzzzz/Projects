@@ -20,7 +20,9 @@ while True:
     except ValueError:
         print('Kirjoita luku.')
     if arvaus == kortti:
-        print(f'Oikein! Kortti oli {kortti}. Dealer juo {int(4 / (n + 1))} hölää')
+        print(f'Oikein! Kortti oli {kortti}. Dealer juo {int(4 / (n + 1))} hölää.')
+        if n == 1:
+            print('Arvaaja vaihtuu.')
         kortit.remove(kortti)
         kortti = random.choice(kortit)
         if n == 0:
