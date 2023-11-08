@@ -71,13 +71,13 @@ else if (droprate(3) > probability2 && probability2 >= droprate(4)) {
 }
 else if (droprate(4) > probability2 && probability2 >= droprate(5)) {
   document.querySelector('#tulos').innerHTML =
-      tulos2 + ': Näistä tahtoo lähteä himaan / Et voittanut taitojesi takia';
+      tulos2 + ': Näistä tahtoo lähteä himaan. / Et voittanut taitojesi takia.';
 }
 else if (droprate(5) > probability2 && probability2 >= droprate(6)) {
   document.querySelector('#tulos').innerHTML =
-      tulos2 + ': Niin epätodennäköistä, että mitään suorituksestasi ei voi mitata';
+      tulos2 + ': https://findahelpline.com/fi/topics/suicidal-thoughts.';
 }
 else {
   document.querySelector('#tulos').innerHTML =
-      tulos2 + ': Muut tarjoaa sinulle kaljat / Tarjoa muille kaljat';
+      tulos2 + ': Muut tarjoaa sinulle kaljat / Tarjoa muille kaljat.';
 }
