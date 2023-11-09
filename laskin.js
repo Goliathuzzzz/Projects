@@ -70,11 +70,11 @@ else if (droprate(1) > totalp && totalp >= droprate(2)) {
 }
 else if (droprate(2) > totalp && totalp >= droprate(3)) {
   document.querySelector('#tulos').innerHTML =
-      tulos2 + ': Epätodennäköisempää, kuin että Vesa valittaisi jostain.';
+      tulos2 + ': Ihan semi unlucky/lucky.';
 }
 else if (droprate(3) > totalp && totalp >= droprate(4)) {
   document.querySelector('#tulos').innerHTML =
-      tulos2 + ': Ihan semi unlucky/lucky.';
+      tulos2 + ': Saat isot valitusoikeudet / Menetät valitusoikeutesi.';
 }
 else if (droprate(4) > totalp && totalp >= droprate(5)) {
   document.querySelector('#tulos').innerHTML =
