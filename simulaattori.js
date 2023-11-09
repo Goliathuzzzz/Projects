@@ -1,16 +1,7 @@
 'use strict';
 
-function factorialize(num) {
-  // factorializes a number
-  let total = 1;
-  for (let i = 1; i <= num; i++) {
-    total *= i;
-  }
-  return total;
-}
-
-function droprate(num) {
-  return (1 - 1/Math.E) ** (num * Math.E);
+function doc(id, string) {
+  return document.querySelector('#' + id).innerHTML = string
 }
 
 const suminput = prompt('Mitä lukua haluat tarkkailla (2-12):');
@@ -34,6 +25,8 @@ for (let j = 0; j < attempts; j++) {
 }
 
 const probability = (hits / attempts);
+doc('luku', 'Tarkkailtava luku on ' + suminput);
+doc('noppa', 'Tarkkailtavan luvun todennäköisyys on noin: ' + 100 * probability.toFixed(6) +'#');
 
 // simulates 100000 games of 'gamelength' length
 // inspects an array of 'turns' length. If length exceeds 'turns', deletes first item of array
@@ -49,6 +42,7 @@ const gamelength = parseInt(gamelengthinput);
 const games = 100000;
 const hit = 1;
 const miss = 0;
+let inspectionperiod = [];
 let happened = 0;
 let mostrolls = 0;
 let totalrolls = 0;
@@ -56,8 +50,8 @@ let maxhitsinrow = 0;
 let totalmaxhitsinrow = 0;
 
 for (let i = 0; i < games; i++) {
-  let rolls = 0
-  let inspectionperiod = [];
+  let rolls = 0;
+  inspectionperiod.length = 0;
   let currenthitsinrow = 0;
   for (let j = 0; j < gamelength; j++) {
     let roll = Math.random();
@@ -80,6 +74,7 @@ for (let i = 0; i < games; i++) {
       }
       if (total >= times) {
         happened += 1;
+        inspectionperiod.length = 0;
       }
     }
     if (currenthitsinrow === maxhitsinrow) {
@@ -95,6 +90,19 @@ for (let i = 0; i < games; i++) {
   }
   totalrolls += rolls
 }
-const average = totalrolls / (gamelength * games)
+const average = totalrolls / games;
 const happenedprobability = happened / games;
-document.querySelector()
+const maxhitsinrowprob = totalmaxhitsinrow / games;
+doc('pelimaara', gamelength + ' pituinen peli simuloitiin ' + games + ' kertaa.');
+doc('esiintymat', 'Luku esiintyi' + gamelength +
+    ' pituisessa pelissä' + totalrolls + 'kertaa');
+doc('maxesiintymat', 'Luku esiintyi enimmillään ' + mostrolls + ' kertaa pelissä.');
+doc('esiintymienkeskiarvo', 'Luku esiintyi keskimäärin ' + average + ' kertaa pelissä.');
+doc('jaksonesiintymat', times + 'lukua esiintyi ainakin ' + happened + ' kertaa enintään ' + turns +
+    ' mittaisessa jaksossa nopanheittoja.');
+doc('jaksontodnak', 'Todennäköisyys, että ainakin ' + times + ' lukua esiintyy enintään ' +
+    turns + ' mittaisessa jaksossa: ' + 100 * happenedprobability.toFixed(6) + '%');
+doc('pisinjakso', 'Pisin jono lukuja peräkkäin: ' + maxhitsinrow);
+doc('pisinesiintymat', 'Näin kävi ' + totalmaxhitsinrow + ' kertaa.');
+doc('pisintodnak', 'Todennäköisyys, että luku tulee ' + maxhitsinrow + 'kertaa peräkkäin, ' +
+    'on noin: ' + 100 * maxhitsinrowprob.toFixed(6) + '%');
