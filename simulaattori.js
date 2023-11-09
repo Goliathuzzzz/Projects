@@ -4,6 +4,15 @@ function doc(id, string) {
   return document.querySelector('#' + id).innerHTML = string
 }
 
+function factorialize(num) {
+  // factorializes a number
+  let total = 1;
+  for (let i = 1; i <= num; i++) {
+    total *= i;
+  }
+  return total;
+}
+
 const suminput = prompt('Mitä lukua haluat tarkkailla (2-12):');
 const amount = 2
 const sum = parseInt(suminput)
@@ -40,8 +49,6 @@ const turns = parseInt(turnsinput);
 const gamelengthinput = prompt('Kuinka monta vuoroa peli kesti (71 keskiarvo):');
 const gamelength = parseInt(gamelengthinput);
 const games = 100000;
-const hit = 1;
-const miss = 0;
 let total = 0;
 let inspectionperiod = [];
 let happened = 0;
@@ -57,20 +64,20 @@ for (let i = 0; i < games; i++) {
   for (let j = 0; j < gamelength; j++) {
     let roll = Math.random();
     if (roll <= probability) {
-      rolls += hit;
-      inspectionperiod.push(hit);
+      rolls += 1;
+      inspectionperiod.push(1);
       currenthitsinrow += 1;
     }
     else {
-      inspectionperiod.push(miss);
+      inspectionperiod.push(0);
       currenthitsinrow = 0;
     }
     if (inspectionperiod.length > turns) {
       inspectionperiod.shift();
     }
     if (inspectionperiod.length <= turns) {
-      for (let item in inspectionperiod) {
-        total += item;
+      for (let i = 0; i < inspectionperiod.length; i++) {
+        total += inspectionperiod[i];
       }
       if (total >= times) {
         happened += 1;
@@ -95,17 +102,28 @@ for (let i = 0; i < games; i++) {
   totalrolls += rolls
 }
 const average = totalrolls / games;
-const happenedprobability = happened / games;
+const happenedprobability = happened / (games * gamelength);
+let maxrollprob = 0;
+for (let i = 0; i <= mostrolls; i++) {
+  maxrollprob +=
+    (factorialize(gamelength)/(factorialize(i) * factorialize(gamelength - i)))
+    * (probability ** i) * ((1-probability) ** (gamelength-i));
+}
+if (maxrollprob > 0.5) {
+  maxrollprob = 1 - maxrollprob;
+}
+
 doc('pelimaara', gamelength + ' vuoroa pitkä peli simuloitiin ' + games + ' kertaa.');
-doc('esiintymat', 'Luku esiintyi ' + gamelength +
+doc('esiintymat', `"${sum}"` + ' esiintyi ' + gamelength +
     ' vuoroa pitkissä peleissä ' + totalrolls + ' kertaa');
-doc('maxesiintymat', 'Luku esiintyi enimmillään ' + mostrolls + ' kertaa pelissä.');
-doc('esiintymienkeskiarvo', 'Luku esiintyi keskimäärin ' + average.toFixed(4) + ' kertaa pelissä.');
-doc('jaksonesiintymat', times + ' lukua esiintyi ainakin ' + happened + ' kertaa enintään ' + turns +
+doc('maxesiintymat', `"${sum}"` + ' esiintyi enimmillään ' + mostrolls + ' kertaa pelissä. ' +
+    'Todennäköisyys, että' + `"${sum}"` + 'esiintyy ainakin ' + mostrolls + ' kertaa, on: ' + maxrollprob.toFixed(6) + '%');
+doc('esiintymienkeskiarvo', `"${sum}"` + ' esiintyi keskimäärin ' + average.toFixed(4) + ' kertaa pelissä.');
+doc('jaksonesiintymat', times + ' ' + `"${sum}"` + ' -lukua esiintyi ainakin ' + happened + ' kertaa enintään ' + turns +
     ' mittaisessa jaksossa nopanheittoja.');
-doc('jaksontodnak', 'Todennäköisyys, että ainakin ' + times + ' lukua esiintyy enintään ' +
-    turns + ' mittaisessa jaksossa: ' + 100 * happenedprobability.toFixed(6) + '%');
-doc('pisinjakso', 'Pisin jono lukuja peräkkäin: ' + maxhitsinrow);
+doc('jaksontodnak', 'Todennäköisyys, että ainakin ' + times + ' ' +`"${sum}"` + ' -lukua esiintyy enintään ' +
+    turns + ' mittaisessa jaksossa: ' + 100 * happenedprobability.toFixed(12) + '%');
+doc('pisinjakso', 'Pisin jono ' + `"${sum}"` +':ja peräkkäin: ' + maxhitsinrow);
 doc('pisinesiintymat', 'Näin kävi ' + totalmaxhitsinrow + ' kertaa.');
-doc('pisintodnak', 'Todennäköisyys, että luku tulee ' + maxhitsinrow + ' kertaa peräkkäin, ' +
-    'on noin: ' + 100 * (probability * maxhitsinrow).toFixed(12) + '%');
+doc('pisintodnak', 'Todennäköisyys, että '+ `"${sum}"` +' tulee ' + maxhitsinrow + ' kertaa peräkkäin, ' +
+    'on noin: ' + 100 * (probability ** (maxhitsinrow - 1)).toFixed(12) + '%');
