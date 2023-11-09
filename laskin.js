@@ -1,6 +1,5 @@
 'use strict';
 
-
 function factorialize(num) {
   // factorializes a number
   let total = 1;
@@ -43,7 +42,7 @@ const xinput = prompt('Montako kertaa luku tuli: ');
 const yinput = prompt('Montako kertaa noppia heitettiin: ');
 const x = parseInt(xinput);
 const y = parseInt(yinput);
-let totalp = 0
+let totalp = 0;
 for (let i = 0; i <= x; i++) {
   totalp +=
     (factorialize(y)/(factorialize(i) * factorialize(y - i)))
