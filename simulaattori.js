@@ -35,6 +35,11 @@ for (let j = 0; j < attempts; j++) {
 
 const probability = (hits / attempts);
 
+// simulates 100000 games of 'gamelength' length
+// inspects an array of 'turns' length. If length exceeds 'turns', deletes first item of array
+// if sum of items in array == 'times', the tested outcome has occured once
+// Updates various other variables
+
 const timesinput = prompt('Kuinka monta kertaa luku tuli:');
 const times = parseInt(timesinput);
 const turnsinput = prompt('Kuinka monen vuoron aikana luku tuli:');
@@ -45,16 +50,25 @@ const games = 100000;
 const hit = 1;
 const miss = 0;
 let happened = 0;
-let inspectionperiod = [];
+let mostrolls = 0;
+let totalrolls = 0;
+let maxhitsinrow = 0;
+let totalmaxhitsinrow = 0;
 
 for (let i = 0; i < games; i++) {
+  let rolls = 0
+  let inspectionperiod = [];
+  let currenthitsinrow = 0;
   for (let j = 0; j < gamelength; j++) {
     let roll = Math.random();
     if (roll <= probability) {
+      rolls += hit;
       inspectionperiod.push(hit);
+      currenthitsinrow += 1;
     }
     else {
       inspectionperiod.push(miss);
+      currenthitsinrow = 0;
     }
     if (inspectionperiod.length > turns) {
       inspectionperiod.shift();
@@ -68,5 +82,19 @@ for (let i = 0; i < games; i++) {
         happened += 1;
       }
     }
+    if (currenthitsinrow === maxhitsinrow) {
+      totalmaxhitsinrow += 1;
+    }
+    if (currenthitsinrow > maxhitsinrow) {
+      maxhitsinrow = currenthitsinrow;
+      totalmaxhitsinrow = 1;
+    }
   }
+  if (rolls > mostrolls) {
+    mostrolls = rolls;
+  }
+  totalrolls += rolls
 }
+const average = totalrolls / (gamelength * games)
+const happenedprobability = happened / games;
+document.querySelector()
