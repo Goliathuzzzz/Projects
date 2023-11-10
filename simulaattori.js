@@ -117,7 +117,7 @@ doc('pelimaara', gamelength + ' vuoroa pitkä peli simuloitiin ' + games + ' ker
 doc('esiintymat', `"${sum}"` + ' esiintyi ' + gamelength +
     ' vuoroa pitkissä peleissä ' + totalrolls + ' kertaa');
 doc('maxesiintymat', `"${sum}"` + ' esiintyi enimmillään ' + mostrolls + ' kertaa pelissä. ' +
-    'Todennäköisyys, että' + `"${sum}"` + 'esiintyy ainakin ' + mostrolls + ' kertaa, on: ' + maxrollprob.toFixed(6) + '%');
+    'Todennäköisyys, että' + `"${sum}"` + 'esiintyy useammin kuin ' + mostrolls + ' kertaa, on: ' + maxrollprob.toFixed(6) + '%');
 doc('esiintymienkeskiarvo', `"${sum}"` + ' esiintyi keskimäärin ' + average.toFixed(4) + ' kertaa pelissä.');
 doc('jaksonesiintymat', times + ' ' + `"${sum}"` + ' -lukua esiintyi ainakin ' + happened + ' kertaa enintään ' + turns +
     ' mittaisessa jaksossa nopanheittoja.');
