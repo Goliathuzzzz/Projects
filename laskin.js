@@ -12,15 +12,19 @@ function factorialize(num) {
 function droprate(num) {
   return (1 - 1/Math.E) ** (num * Math.E);
 }
+const lukuform = document.querySelector('#lukuform');
+const suminput = document.querySelector('input[name=luku]');
+const xinput = document.querySelector('#lukukerrat');
+const yinput = document.querySelector('#nopanheitot');
 
-const suminput = prompt('Mitä lukua haluat tarkkailla (2-12):');
-const amount = 2
-const sum = parseInt(suminput)
+lukuform.addEventListener('input', function() {
+const sum = parseInt(suminput.value);
+const amount = 2;
 let dicesum = 0;
 let hits = 0;
 const attempts = 1000000;
 
-// probability of getting your number from 2 dice rolled once
+// probability to get number from 2 dice rolls
 
 for (let j = 0; j < attempts; j++) {
   dicesum = 0;
@@ -32,16 +36,13 @@ for (let j = 0; j < attempts; j++) {
     hits += 1;
   }
 }
-
 const probability = (hits / attempts);
-const tulos = 100 * probability.toFixed(4) + '%';
+document.querySelector('#todnak').innerHTML = 100 * probability.toFixed(4) + '%';
 
 // probability to get number x times in y rolls of 2 dice
 
-const xinput = prompt('Montako kertaa luku tuli: ');
-const yinput = prompt('Montako kertaa noppia heitettiin: ');
-const x = parseInt(xinput);
-const y = parseInt(yinput);
+const x = parseInt(xinput.value);
+const y = parseInt(yinput.value);
 let totalp = 0;
 for (let i = 0; i <= x; i++) {
   totalp +=
@@ -55,9 +56,6 @@ if (totalp > 0.5) {
   totalp = 1 - totalp;
 }
 const tulos2 = 100 * totalp.toFixed(4) + '%';
-
-document.querySelector('#todnak').innerHTML =
-    tulos;
 
 if (totalp >= droprate(1)) {
   document.querySelector('#tulos').innerHTML =
@@ -87,3 +85,6 @@ else {
   document.querySelector('#tulos').innerHTML =
       tulos2 + ': Muut tarjoaa sinulle kaljat / Tarjoa muille kaljat.';
 }
+})
+
+

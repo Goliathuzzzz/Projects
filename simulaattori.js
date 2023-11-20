@@ -185,7 +185,7 @@ doc('jaksonesiintymat', `"${sum}"` + ' -luku esiintyi ' + times + ' kertaa enint
     ' mittaisessa jaksossa nopanheittoja: ' + happened + ' kertaa.');
 doc('jaksontodnak', 'Todennäköisyys, että enemmän kuin ' + times + ' ' +`"${sum}"` + ' -lukua esiintyy ' +
     turns + ' mittaisessa jaksossa: ' + 100 * realturnsprob.toFixed(12) + '%');
-doc('pisinjakso', 'Pisin jono ' + `"${sum}"` +':ja peräkkäin: ' + maxhitsinrow);
+doc('pisinjakso', 'Pisin jono ' + `"${sum}"` +':ia peräkkäin: ' + maxhitsinrow);
 doc('pisinilman', 'Pisin jakso ilman lukua ' + `"${sum}"` + ' oli: ' + maxlengthwithout)
 doc('pisinesiintymat', 'Näin kävi ' + totalmaxhitsinrow + ' kertaa.');
 doc('pisinilmanesiintymat', 'Näin kävi ' + maxlengthwithoutamounts + ' kertaa.')

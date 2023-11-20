@@ -8,9 +8,18 @@
 <body>
     <h1>Catan-laskin suolaisille pelaajille</h1>
     <h2>Kuinka todennäköinen lukusi on (suurinpiirtein):</h2>
-    <p id="todnak"></p>
-    <h2>Kuinka vitun unlucky/lucky olit:</h2>
-    <p id="tulos"><br></p>
+    <form id="lukuform">
+        <label for="luku">Luku:</label>
+        <input name="luku" type="text" id="luku" placeholder="Syötä lukusi tähän">
+        <p id="todnak"></p>
+        <h2>Kuinka vitun unlucky/lucky olit:</h2>
+        <label for="lukukerrat">Luvun ilmentymät:</label>
+        <input name="lukukerrat" type="text" id="lukukerrat" placeholder="Montako kertaa luku tuli?">
+        <br>
+        <label for="nopanheitot">Nopan heittojen määrä:</label>
+        <input name="nopanheitot" type="text" id="nopanheitot" placeholder="Montako kertaa noppia heitettiin?">
+    </form>
+    <p id="tulos"></p>
     <h2>Catan tilastoja</h2>
     <p>
         Keskimääräinen Catan-peli kestää noin 71 vuoroa (https://www.alexcates.com/post/board-game-breakdown-settlers-of-catan-the-basics). <br>
