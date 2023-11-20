@@ -8,24 +8,43 @@
 <body>
     <h1>Catan-simulaattori suolaisille pelaajille</h1>
     <h2>Nopan silmäluvun todennäköisyys</h2>
-    <p id="luku"></p>
-    <p id="noppa"></p>
-    <h2>Simulaattorin tulokset</h2>
-    <h3>Pelien määrä</h3>
-    <p id="pelimaara"></p>
-    <h3>Luvun esiintymät</h3>
-    <p id="esiintymat"></p>
-    <p id="maxesiintymat"></p>
-    <p id="esiintymienkeskiarvo"></p>
-    <h3>Jakson esiintymät</h3>
-    <p id="jaksonesiintymat"></p>
-    <p id="jaksontodnak"></p>
-    <h3>Pisin jakso</h3>
-    <p id="pisinjakso"></p>
-    <p id="pisinesiintymat"></p>
-    <p id="pisinilman"></p>
-    <p id="pisinilmanesiintymat"></p>
-    <p id="pisintodnak"></p>
-    <p id="pisinilmantodnak"></p>
+    <form id="simulaattori">
+        <h2>Syötteet</h2>
+        <label for="lukuinput">Luku (2-12):</label>
+        <input name="luku" id="lukuinput" type="text">
+        <br>
+        <label for="kerratinput">Kuinka monta kertaa luku tuli:</label>
+        <input name="kerrat" id="kerratinput" type="text">
+        <br>
+        <label for="jaksoinput">Kuinka monen vuoron jaksoa tarkkaillaan:</label>
+        <input name="jakso" id="jaksoinput" type="text">
+        <br>
+        <label for="pituusinput">Pelin pituus (71 keskiarvo):</label>
+        <input name="pituus" id="pituusinput" type="text">
+        <br>
+        <label for="pelitinput">Pelien määrä (max 100000):</label>
+        <input name="pelit" id="pelitinput" type="text">
+        <br>
+        <button>Simuloi</button>
+        <p id="noppa"></p>
+        <h2>Simulaattorin tulokset</h2>
+        <h3>Pelien määrä</h3>
+        <p id="pelimaara"></p>
+        <h3>Luvun esiintymät</h3>
+        <p id="esiintymat"></p>
+        <p id="maxesiintymat"></p>
+        <p id="esiintymienkeskiarvo"></p>
+        <h3>Jakson esiintymät</h3>
+        <p id="jaksonesiintymat"></p>
+        <p id="jaksontodnak"></p>
+        <h3>Pisin jakso</h3>
+        <p id="pisinjakso"></p>
+        <p id="pisinesiintymat"></p>
+        <p id="pisinilman"></p>
+        <p id="pisinilmanesiintymat"></p>
+        <p id="pisintodnak"></p>
+        <p id="pisinilmantodnak"></p>
+    </form>
+
 </body>
 </html>
